@@ -1,0 +1,8 @@
+<div class="wrapper" *ngIf="flight">
+
+    <img [src]="utils.generateDestinationImage(flight!.destination)">
+    <pre>{{flight | json}}</pre>
+
+</div>
+
+<app-loading *ngIf="!flight">
