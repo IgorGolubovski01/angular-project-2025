@@ -27,7 +27,7 @@ export class DetailsComponent {
       })
     })
   }
-
+  
   public generateMapLink(){
     return `https://www.google.com/maps?output=embed&q=${this.flight?.destination}`
   }
