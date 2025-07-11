@@ -30,7 +30,7 @@ export class UserService{
         return false
     }
 
-    static getActiveUsers(): UserModel | null {
+    static getActiveUser(): UserModel | null {
         if ( !localStorage.getItem('active'))
             return null
 
