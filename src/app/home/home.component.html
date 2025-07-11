@@ -19,10 +19,10 @@
             <p>Plane mode: {{flight.flightNumber}}</p>
         </mat-card-content>
         <mat-card-actions>
-            <a matButton [routerLink]="['/details/', flight.id]">
+            <a mat-button [routerLink]="['/details/', flight.id]">
                 <i class="fa-solid fa-arrow-up-right-from-square"></i> Details
             </a>
-            <button matButton>
+            <button mat-button>
                 <i class="fa-solid fa-cart-shopping"></i> Book Now
             </button>
         </mat-card-actions>

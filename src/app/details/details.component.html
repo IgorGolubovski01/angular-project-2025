@@ -19,9 +19,9 @@
                 </mat-list>
             </mat-card-content>
             <mat-card-actions>
-                <button matButton>
+                <a matButton [routerLink]="['/details/'+flight.id+'/order']">
                     <i class="fa-solid fa-cart-shopping"></i> Book Now
-                </button>
+                </a>
             </mat-card-actions>
         </mat-card>
 
