@@ -1,5 +1,11 @@
 <div class="wrapper">
-    <p>user works!</p>
+
+
+    <button routerLink="/user" mat-button (click)="doChangePassword()">
+        CHANGE PASSWORD
+    </button>
+
+
     <div *ngIf="orders.length == 0">
         <p>Nema ordera</p>
     </div>
