@@ -7,6 +7,7 @@ import { MatCardModule } from '@angular/material/card';
 import { UserModel } from '../models/user.model';
 import { MatTableModule } from '@angular/material/table';
 import { UtilsService } from '../../services/utils.service';
+import { OrderModel } from '../models/order.model';
 
 @Component({
   selector: 'app-user',
@@ -15,7 +16,7 @@ import { UtilsService } from '../../services/utils.service';
   styleUrl: './user.component.css'
 })
 export class UserComponent {
-    displayedColumns: string[] = ['id', 'destination', 'flightNumber', 'airline', 'count','price','total','status','rating', 'actions'];
+    displayedColumns: string[] = ['id', 'destination', 'airline', 'count','price','total','status','rating', 'actions'];
 
   public user: UserModel | null = null
 
@@ -35,5 +36,10 @@ export class UserComponent {
       return
     }
     alert(UserService.changePassword(newPassword) ? 'Password has been changed' : 'Failed to change password')
+  }
+
+  public doPay(order: OrderModel){
+    order.status = 'paid'
+    
   }
 }
