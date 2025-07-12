@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { UserService } from '../../services/user.service';
-import { Router } from '@angular/router';
-import { NgFor, NgIf } from '@angular/common';
+import { Router, RouterLink } from '@angular/router';
+import { NgIf } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { UserModel } from '../models/user.model';
@@ -10,7 +10,7 @@ import { UtilsService } from '../../services/utils.service';
 
 @Component({
   selector: 'app-user',
-  imports: [NgIf,NgFor, MatButtonModule, MatCardModule, MatTableModule],
+  imports: [NgIf, MatButtonModule, MatCardModule, MatTableModule, RouterLink],
   templateUrl: './user.component.html',
   styleUrl: './user.component.css'
 })

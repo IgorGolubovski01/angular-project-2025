@@ -7,22 +7,23 @@ import { MatCardModule } from '@angular/material/card';
 import { NgFor, NgIf } from '@angular/common';
 import { MatFormField, MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
-import {MatSelectModule} from '@angular/material/select';
+import { MatSelectModule } from '@angular/material/select';
 import { AirlineModel } from '../models/airline.model';
 import { AirlineService } from '../../services/airline.service';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { UserService } from '../../services/user.service';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-order',
-  imports: [MatCardModule, NgIf, NgFor, MatInputModule, MatButtonModule, MatSelectModule, MatFormFieldModule],
+  imports: [MatCardModule, NgIf, NgFor, MatInputModule, MatButtonModule, MatSelectModule, MatFormFieldModule, FormsModule],
   templateUrl: './order.component.html',
   styleUrl: './order.component.css'
 })
 export class OrderComponent {
   public flight: FlightModel | null = null
-  public airlines: AirlineModel[]  = AirlineService.getAirlines();
-  public selectedAirline: AirlineModel = this.airlines[0]
+  public airlines: AirlineModel[] = AirlineService.getAirlines();
+  public selectedAirline: number = this.airlines[0].id
   public selectedTicketCount: number = 1
   public selectedPrice: number = 150
 
@@ -35,12 +36,12 @@ export class OrderComponent {
     })
   }
 
-  public doOrder(){
+  public doOrder() {
     const result = UserService.createOrder({
       flightId: this.flight!.id,
       flightNumber: this.flight!.flightNumber,
       destination: this.flight!.destination,
-      airline: this.selectedAirline,
+      airline: AirlineService.getAirlineById(this.selectedAirline)!,
       count: this.selectedTicketCount,
       pricePerItem: this.selectedPrice,
       status: 'ordered',

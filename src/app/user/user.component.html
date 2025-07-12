@@ -21,22 +21,15 @@
     </div>
 
     <div *ngIf="user!.orders.length > 0">
-        <h3>Spisak Ordera</h3>
-        <ul>
-            <li *ngFor="let order of user!.orders">
-                {{order.destination}} {{order.flightNumber}} {{order.pricePerItem}} {{order.flightId}}
-            </li>
-        </ul>
+
         <div class="wrapper" *ngIf="user.orders">
             <h1>Order List</h1>
             <table mat-table [dataSource]="user.orders" class="mat-elevation-z8">
 
-                <!--- Note that these columns can be defined in any order.
-        The actual rendered columns are set as a property on the row definition" -->
-
-                <!-- Position Column -->
                 <ng-container matColumnDef="id">
-                    <th mat-header-cell *matHeaderCellDef><i class="fa-solid fa-hashtag"></i> ID </th>
+                    <th mat-header-cell *matHeaderCellDef>
+                        <i class="fa-solid fa-hashtag"></i> ID
+                    </th>
                     <td mat-cell *matCellDef="let element"> {{element.flightId}} </td>
                 </ng-container>
 
@@ -56,7 +49,7 @@
                 <!-- Symbol Column -->
                 <ng-container matColumnDef="airline">
                     <th mat-header-cell *matHeaderCellDef>
-                        <i class="fa-solid fa-clock-rotate-left"></i> Airline   
+                        <i class="fa-solid fa-plane"></i> Airline
                     </th>
                     <td mat-cell *matCellDef="let element">
                         {{element.airline.name}}
@@ -65,34 +58,34 @@
 
                 <ng-container matColumnDef="count">
                     <th mat-header-cell *matHeaderCellDef>
-                        <i class="fa-solid fa-clock-rotate-left"></i> Count
+                        <i class="fa-solid fa-arrow-up-wide-short"></i> Count
                     </th>
                     <td mat-cell *matCellDef="let element">
                         {{element.count}}
                     </td>
-                </ng-container> 
+                </ng-container>
 
                 <ng-container matColumnDef="price">
                     <th mat-header-cell *matHeaderCellDef>
-                        <i class="fa-solid fa-clock-rotate-left"></i> Price Per Ticket   
+                        <i class="fa-solid fa-tag"></i> Price Per Ticket
                     </th>
                     <td mat-cell *matCellDef="let element">
-                        {{element.pricePerItem}}
+                        {{element.pricePerItem}} <i class="fa-solid fa-euro-sign"></i>
                     </td>
                 </ng-container>
 
                 <ng-container matColumnDef="total">
                     <th mat-header-cell *matHeaderCellDef>
-                        <i class="fa-solid fa-clock-rotate-left"></i> Total   
+                        <i class="fa-solid fa-hand-holding-dollar"></i> Total
                     </th>
                     <td mat-cell *matCellDef="let element">
-                        {{element.pricePerItem*element.count}}
+                        {{element.pricePerItem*element.count}} <i class="fa-solid fa-euro-sign"></i>
                     </td>
                 </ng-container>
 
                 <ng-container matColumnDef="status">
                     <th mat-header-cell *matHeaderCellDef>
-                        <i class="fa-solid fa-clock-rotate-left"></i> Status
+                        <i class="fa-solid fa-chart-simple"></i> Status
                     </th>
                     <td mat-cell *matCellDef="let element">
                         {{element.status}}
@@ -101,10 +94,10 @@
 
                 <ng-container matColumnDef="rating">
                     <th mat-header-cell *matHeaderCellDef>
-                        <i class="fa-solid fa-clock-rotate-left"></i> Rating   
+                        <i class="fa-solid fa-star"></i> Rating
                     </th>
                     <td mat-cell *matCellDef="let element">
-                        {{element.rating}}
+                        {{element.rating?element.rating:'No ratings available'}}
                     </td>
                 </ng-container>
 
@@ -112,7 +105,9 @@
                 <ng-container matColumnDef="actions">
                     <th mat-header-cell *matHeaderCellDef><i class="fa-solid fa-location-arrow"></i> Actions </th>
                     <td mat-cell *matCellDef="let element">
-                       
+                        <a mat-button [routerLink]="['/details/', element.flightId]">
+                            <i class="fa-solid fa-arrow-up-right-from-square"></i> Details
+                        </a>
                     </td>
                 </ng-container>
 

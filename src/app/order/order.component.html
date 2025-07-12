@@ -12,20 +12,20 @@
                 <input type="text" matInput [value]="flight.flightNumber" disabled>
             </mat-form-field>
             <mat-form-field class="full-width">
-                <mat-label>Schedualed At</mat-label>
+                <mat-label>Scheduled At</mat-label>
                 <input type="text" matInput [value]="utils.formatDate(flight.scheduledAt)" disabled>
             </mat-form-field>
 
             <mat-form-field class="full-width">
                 <mat-label>Airline</mat-label>
-                <mat-select>
-                    <mat-option *ngFor="let airline of airlines" [value]="airline">{{airline.name}}</mat-option>
+                <mat-select [(ngModel)]="selectedAirline">
+                    <mat-option *ngFor="let airline of airlines" [value]="airline.id">{{airline.name}}</mat-option>
                 </mat-select>
             </mat-form-field>
 
             <mat-form-field class="full-width">
                 <mat-label>Chose price</mat-label>
-                <mat-select [(value)]="selectedPrice">
+                <mat-select [(ngModel)]="selectedPrice">
                     <mat-option [value]="150">Economy - 150&euro;</mat-option>
                     <mat-option [value]="480">Business - 480&euro;</mat-option>
                     <mat-option [value]="850">First Class - 850&euro;</mat-option>
@@ -34,7 +34,7 @@
 
             <mat-form-field class="full-width">
                 <mat-label>Ticket Count</mat-label>
-                <input type="number" matInput>
+                <input type="number" matInput [(ngModel)]="selectedTicketCount">
             </mat-form-field>
 
         </mat-card-content>
