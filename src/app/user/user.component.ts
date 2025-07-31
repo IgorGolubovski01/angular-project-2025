@@ -40,6 +40,10 @@ export class UserComponent {
 
   public doPay(order: OrderModel){
     order.status = 'paid'
-    
+    if(UserService.createOrUpdateOrder(order)){
+      alert("Paid")
+      this.user = UserService.getActiveUser()
+      return
+    }
   }
 }

@@ -44,11 +44,23 @@ export class UserService{
         return null
     }
 
-    static createOrder(order: OrderModel){
+    static createOrUpdateOrder(order: OrderModel){
         const arr = this.retrieveUsers()
         for (let user of arr){
             if(user.email === localStorage.getItem('active')){
-                
+
+
+                if(user.orders.find(o=>o.id == order.id)){
+                    for(let o of user.orders){
+                        if(o.id === order.id){
+                            o = order
+                            return true
+                        }
+                    }
+                }else{
+                    user.orders.push(order)
+                }
+
                 user.orders.push(order)
                 localStorage.setItem('users', JSON.stringify(arr))
                 return true

@@ -31,6 +31,6 @@ export class HomeComponent {
   public openDetails(id: number){
     
   }
-  
+    
 }
 
