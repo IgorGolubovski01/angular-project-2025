@@ -44,7 +44,7 @@ export class UserService{
         return null
     }
 
-    static createOrUpdateOrder(order: OrderModel){
+    static createOrder(order: OrderModel){
         const arr = this.retrieveUsers()
         for (let user of arr){
             if(user.email === localStorage.getItem('active')){
@@ -54,19 +54,37 @@ export class UserService{
                     for(let o of user.orders){
                         if(o.id === order.id){
                             o = order
-                            return true
+
                         }
                     }
                 }else{
                     user.orders.push(order)
                 }
 
-                user.orders.push(order)
                 localStorage.setItem('users', JSON.stringify(arr))
                 return true
             }
         }
 
+        return false
+    }
+
+static changeOrderStatus(state: 'ordered' | 'paid' | 'canceled', id: number) {
+        const active = this.getActiveUser()
+        if (active) {
+            const arr = this.retrieveUsers()
+            for (let user of arr) {
+                if (user.email == active.email) {
+                    for (let order of user.orders) {
+                        if (order.id == id) {
+                            order.status = state
+                        }
+                    }
+                    localStorage.setItem('users', JSON.stringify(arr))
+                    return true
+                }
+            }
+        }
         return false
     }
     

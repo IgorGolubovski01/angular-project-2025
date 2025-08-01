@@ -39,11 +39,20 @@ export class UserComponent {
   }
 
   public doPay(order: OrderModel){
-    order.status = 'paid'
-    if(UserService.createOrUpdateOrder(order)){
+    if(UserService.changeOrderStatus('paid',order.id)){
       alert("Paid")
       this.user = UserService.getActiveUser()
       return
     }
   }
+
+    public doCancel(order: OrderModel){
+    if(UserService.changeOrderStatus('canceled',order.id)){
+      alert("Canceled")
+      this.user = UserService.getActiveUser()
+      return
+    }
+  }
+
+
 }

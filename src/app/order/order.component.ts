@@ -37,7 +37,7 @@ export class OrderComponent {
   }
 
   public doOrder() {
-    const result = UserService.createOrUpdateOrder({
+    const result = UserService.createOrder({
       id: new Date().getTime(),
       flightId: this.flight!.id,
       flightNumber: this.flight!.flightNumber,
