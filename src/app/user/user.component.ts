@@ -54,5 +54,11 @@ export class UserComponent {
     }
   }
 
+  public doRating(order: OrderModel, r:boolean){
+    if(UserService.changeRating(r,order.id)){
+      this.user = UserService.getActiveUser()
+    }
+  }
+
 
 }
